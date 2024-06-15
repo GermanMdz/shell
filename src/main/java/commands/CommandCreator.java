@@ -17,9 +17,9 @@ public class CommandCreator {
         Command command = new NotFound(tokens[0]);
         if (this.builtinCommands.containsKey(tokens[0])) {
             command = this.builtinCommands.get(tokens[0]);
-            command.setProp("");
-            if (tokens.length > 1) command.setProp(tokens[1]);
         }
+        command.setProp("");
+        if (tokens.length > 1) command.setProp(tokens[1]);
         return command;
     }
 

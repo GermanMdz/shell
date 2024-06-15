@@ -12,13 +12,13 @@ public class Type extends Command {
     }
 
     @Override
-    public void execute(String path) {
+    public void execute(String[] paths) {
         if(reqCommand.isBiltin()) {
             System.out.println(reqCommand.name + " is a shell builtin");
             return;
         } 
         try {
-            File file = this.fileExist(reqCommand.name, path);
+            File file = this.fileExist(reqCommand.name, paths);
             System.out.printf("%s is %s\n", reqCommand.name, file.getPath());
         } catch (Exception e) {
             System.out.printf("%s: not found\n", reqCommand.name);
@@ -26,24 +26,10 @@ public class Type extends Command {
         
     }
 
-    private File fileExist(String name, String path) throws Exception {
-        String paths[] = this.splitArgs(path);
-        for (String p : paths) {
-            File file = new File(p, name);
-            if (file.exists()) return file;
-        }
-        throw new Exception(name);
-    }
-
     @Override
     public void setProp(String reqCommand) {
         CommandCreator cmdCreator = new CommandCreator();
         this.reqCommand = cmdCreator.createCommand(reqCommand);
     }
-
-    public String[] splitArgs(String path) {
-        return path.split(File.pathSeparator);
-    }
-    
 
 }

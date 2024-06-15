@@ -9,7 +9,7 @@ public class Exit extends Command{
     }
 
     @Override
-    public void execute(String p) {
+    public void execute(String[] p) {
         System.exit(Integer.parseInt(this.prop));
     }
 

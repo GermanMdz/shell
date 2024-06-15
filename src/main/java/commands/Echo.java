@@ -9,7 +9,7 @@ public class Echo extends Command {
     }
 
     @Override
-    public void execute(String p) {
+    public void execute(String[] p) {
         System.out.printf("%s\n", this.prop);
     }
 }

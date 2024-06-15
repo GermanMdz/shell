@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.Scanner;
 
 import commands.Command;
@@ -7,7 +8,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         
         CommandCreator cmdCreator = new CommandCreator();
-        String pathEnv = System.getenv("PATH");
+        String[] pathEnv = System.getenv("PATH").split(File.pathSeparator);
         while(true) {
             System.out.print("$ ");
             String input = waitForUserInput();
