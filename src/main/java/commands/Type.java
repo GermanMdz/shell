@@ -19,7 +19,7 @@ public class Type extends Command {
         } 
         try {
             File file = this.fileExist(reqCommand.name, path);
-            System.out.printf("%s is %s\n", name, file.getPath());
+            System.out.printf("%s is %s\n", reqCommand.name, file.getPath());
         } catch (Exception e) {
             System.out.printf("%s: not found\n", reqCommand.name);
         }
