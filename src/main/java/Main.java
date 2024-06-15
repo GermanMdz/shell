@@ -6,9 +6,9 @@ public class Main {
         
         HashMap<String, Command> builtinCommands = new HashMap<>();
         builtinCommands.put("echo", new Echo());
+        builtinCommands.put("exit", new Exit());
         // builtinCommands.put("cd", new Cd());
         // builtinCommands.put("pwd", new Pwd());
-        // builtinCommands.put("exit", new Exit());
 
         while(true) {
             System.out.print("$ ");
