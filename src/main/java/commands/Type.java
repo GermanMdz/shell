@@ -1,6 +1,6 @@
 package commands;
 
-import java.util.HashMap;
+import java.io.File;
 
 public class Type extends Command {
 
@@ -12,20 +12,38 @@ public class Type extends Command {
     }
 
     @Override
-    public void execute() {
-        reqCommand.printType();
+    public void execute(String path) {
+        if(reqCommand.isBiltin()) {
+            System.out.println(reqCommand.name + " is a shell builtin");
+            return;
+        } 
+        try {
+            File file = this.fileExist(reqCommand.name, path);
+            System.out.printf("%s is %s\n", name, file.getPath());
+        } catch (Exception e) {
+            System.out.printf("%s: not found\n", reqCommand.name);
+        }
+        
     }
 
-    // @Override
+    private File fileExist(String name, String path) throws Exception {
+        String paths[] = this.splitArgs(path);
+        for (String p : paths) {
+            File file = new File(p, name);
+            if (file.exists()) return file;
+        }
+        throw new Exception(name);
+    }
+
+    @Override
     public void setProp(String reqCommand) {
         CommandCreator cmdCreator = new CommandCreator();
-        Command command = new NotFound(reqCommand);
-        if (cmdCreator.getBuiltinCommands().containsKey(reqCommand)) {
-            command = cmdCreator.getBuiltinCommands().get(reqCommand);
-        }
-        this.reqCommand = command;
+        this.reqCommand = cmdCreator.createCommand(reqCommand);
     }
 
+    public String[] splitArgs(String path) {
+        return path.split(File.pathSeparator);
+    }
     
 
 }

@@ -8,13 +8,13 @@ public class NotFound extends Command{
     }
 
     @Override
-    public void execute() {
+    public void execute(String p) {
         System.out.printf("%s: command not found\n", this.name);
     }
 
     @Override
-    public void printType() {
-        System.out.printf("%s: not found\n", this.name);
+    public boolean isBiltin() {
+        return false;
     }
 
 }
