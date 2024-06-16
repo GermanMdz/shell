@@ -10,6 +10,8 @@ public class CommandCreator {
         builtinCommands.put("echo", new Echo());
         builtinCommands.put("exit", new Exit());
         builtinCommands.put("type", new Type());
+        builtinCommands.put("pwd", new Pwd());
+        builtinCommands.put("cd", new Cd());
     }
 
     public Command createCommand(String input) {
