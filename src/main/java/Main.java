@@ -21,7 +21,6 @@ public class Main {
     private static String waitForUserInput() {
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine();
-        // scanner.close();
         return input;
     }
 
